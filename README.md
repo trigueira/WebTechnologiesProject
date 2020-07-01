@@ -1,5 +1,6 @@
 # LearnOn
-This is a project for Masters in Applied Software Engineering module Web Technologies. It consist on an UI admin dashboard functionality and a [screencast](https://github.com/trigueira/WebTechnologiesProject/blob/master/WebTecProject.mp4) can be downloaded from this repository.The details and progress of the project is detailed in the 
+This is a project for Masters in Applied Software Engineering module Web Technologies. It consist on an UI admin dashboard functionality.
+A [screencast](https://github.com/trigueira/WebTechnologiesProject/blob/master/WebTecProject.mp4) can be downloaded from this repository. The details and progress of the project is detailed in the:
 
 > [Sprint#0 WriteUp](https://github.com/trigueira/WebTechnologiesProject/blob/master/%5BA00258363%5D%20Sprint%230%20WriteUp.pdf)
 
