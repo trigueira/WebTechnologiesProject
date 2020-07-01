@@ -23,4 +23,4 @@ Develop a web application using SPA architecture that achieves the following poi
 * Store in the database al information about users/admins and products
 
 ## Project Arquitecture
-![Project Arquitecture](https://github.com/trigueira/WebTechnologiesProject/blob/master/learnon/src/main/webapp/resources/images/projectArchitecture.png "Project Arquitecture")
+![Project Arquitecture](https://github.com/trigueira/WebTechnologiesProject/blob/master/learnOn/src/main/webapp/resources/images/projectArchitecture.png "Project Arquitecture")
