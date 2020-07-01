@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" href="resources/images/title-img.png">
+<link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/style.css">
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="resources/js/popper.min.js"></script>
+<script src="resources/js/bootstrapV4.js"></script>
+<script src="resources/js/all.js"></script>
+<script src="resources/js/script.js"></script>
+<script src="resources/js/jquery.dataTables.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<title>LearnOn Admin Dashboard</title>
+</head>
+<body>
+	<div id="workArea">
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-md navbar-light">
+			<button class="navbar-toggler ml-auto mb-2 bg-light" type="button"
+				data-toggle="collapse" data-target="#myNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<div class="container-fluid">
+					<div class="row">
+						<!-- sidebar -->
+						<div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+							<span
+								class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">LearnOn</span>
+							<div id="userLogged" class="bottom-border pb-3">
+								<img id="imageUserLogged" src="" width="50"
+									class="rounded-circle mr-3"> <span id="nameUserLogged"></span>
+							</div>
+							<ul class="navbar-nav flex-column mt-4">
+								<li class="nav-item"><a href="#"
+									class="nav-link text-white p-3 mb-2 current"><i
+										class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+								<li id="logoutButton" class="nav-item"><a href="#"
+									class="nav-link text-white p-3 mb-2 current"><i
+										class="fas fa-sign-out-alt text-light fa-lg mr-3"></i>Logout</a></li>
+							</ul>
+						</div>
+						<!-- end of sidebar -->
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- end of navbar -->
+
+		<!-- cards -->
+		<section>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+						<div class="row pt-md-5 mt-md-3 mb-5">
+							<div class="col-xl-3 col-sm-6 p-2">
+								<div class="card card-common">
+									<div class="card-body">
+										<div class="d-flex justify-content-between">
+											<i class="fas fa-laptop fa-3x text-info"></i>
+											<div class="text-right text-secondary" id="numberFreeCourses">
+												<h5>Number of free courses</h5>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer text-secondary">
+										<i class="fas fa-sync mr-3" id="numberFreeCoursesUpdate"></i>
+										<span>Updated Now</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-sm-6 p-2">
+								<div class="card card-common">
+									<div class="card-body">
+										<div class="d-flex justify-content-between">
+											<i class="fas fa-graduation-cap fa-3x text-info"></i>
+											<div class="text-right text-secondary" id="numberPaidCourses">
+												<h5>Number of paid courses</h5>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer text-secondary">
+										<i class="fas fa-sync mr-3" id="numberPaidCoursesUpdate"></i>
+										<span>Updated Now</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-sm-6 p-2">
+								<div class="card card-common">
+									<div class="card-body">
+										<div class="d-flex justify-content-between">
+											<i class="fas fa-euro-sign fa-3x text-info"></i>
+											<div class="text-right text-secondary"
+												id="averagePaidCourses">
+												<h5>Average of paid courses</h5>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer text-secondary">
+										<i class="fas fa-sync mr-3" id="averagePaidCoursesUpdate"></i>
+										<span>Updated Now</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-sm-6 p-2">
+								<div class="card card-common">
+									<div class="card-body">
+										<div class="d-flex justify-content-between">
+											<i class="fas fa-sort-amount-up fa-3x text-info"></i>
+											<div class="text-right text-secondary" id="mostPopular">
+												<h5>Most popular subject</h5>
+											</div>
+										</div>
+									</div>
+									<div class="card-footer text-secondary">
+										<i class="fas fa-sync mr-3" id="mostPopularUpdate"></i> <span>Updated
+											Now</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- tables -->
+		<section>
+			<div class="container-fluid">
+				<div class="row mb-5">
+					<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+						<div class="row align-items-center">
+							<div class="col-xl-6 col-12 mb-4 mb-xl-0">
+								<h3 id="line" class="text-muted text-center mb-3">USERS</h3>
+								<table id="usersTable"
+									class="table table-striped bg-light text-center">
+									<thead>
+										<tr class="text-muted">
+											<th>Username</th>
+											<th>Name</th>
+											<th>Image</th>
+											<th><span id="createUser"
+												class="badge badge-danger w-75 py-2">new user</span></th>
+										</tr>
+									</thead>
+									<tbody id="userList"></tbody>
+								</table>
+							</div>
+							<div class="col-xl-6 col-12 mb-4 mb-xl-0">
+								<h3 id="linne" class="text-muted text-center mb-3">COURSES</h3>
+								<table id="coursesTable"
+									class="table table-striped bg-light text-center">
+									<thead>
+										<tr class="text-muted">
+											<th>Title</th>
+											<th>Price</th>
+											<th>Subject</th>
+											<th>Type</th>
+											<th><span id="createCourse"
+												class="badge badge-danger w-75 py-2">new course</span></th>
+										</tr>
+									</thead>
+									<tbody id="courseList"></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- footer -->
+		<footer>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+						<div class="row border-top pt-3">
+							<div class="col-lg-6 text-center">
+								<ul class="list-inline">
+									<li class="list-inline-item mr-2"><a id="aboutButton"
+										class="text-dark">About</a></li>
+								</ul>
+							</div>
+							<div class="col-lg-6 text-center">
+								<p>&copy; 2018 Copyright. Template adapted from
+									CodeAndCreate - MG</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- modal login -->
+	<div class="container h-100" id="login">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<div class="login_logo_container">
+						<img id="refreshImage" src="resources/images/users/newUser.png"
+							class="login_logo" alt="Logo">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input id="usernameLogin" type="text" name=""
+								class="form-control input_user" value="" placeholder="username">
+							<span id="usernameError" style="color: red;"></span>
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input id="passwordLogin" type="password" name=""
+								class="form-control input_pass" value="" placeholder="password"
+								pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"> <span
+								id="passwordError" style="color: red;"></span>
+						</div>
+					</form>
+				</div>
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<button id="loginButton" type="button" name="button"
+						class="btn login_btn">Login</button>
+				</div>
+				<div>
+				<p></p>
+					<span id="errorMessage" style="color: red;"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal course details -->
+	<div class="modal fade" id="courseDetaislModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						DETAILS FOR <b>COURSE ID <span id="courseID"></span></b>
+					</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<img id="coursePic" src="" class="course_pic" />
+					<p></p>
+					<div class="form_rule">
+						<label>Title:</label> <input class="form-control" type="text"
+							id="title" name="title">
+					</div>
+					<div class="d-flex justify-content-center form_container_modal">
+						<form class="form_rule">
+							<label>Type:</label> <select class="form-control"
+								name="selectCourseType" id=type>
+								<option value="Exercise">Exercise</option>
+								<option value="History">History</option>
+								<option value="Health">Health</option>
+								<option value="Programming">Programming</option>
+							</select> <br> <label>Subject:</label> <input class="form-control"
+								type="text" id="subject" name="subject" /> <br> <label>Instructor:</label>
+							<input class="form-control" type="text" id="instructor"
+								name="instructor" />
+						</form>
+						<form class="form_rule">
+							<label>Level:</label> <input class="form-control" type="text"
+								id="level" name="level" /> <br> <label>Duration in
+								hours:</label> <input class="form-control" type="text" id="duration"
+								name="duration" /><br /> <label>Price:</label> <input
+								class="form-control" type="text" id="price" name="price" /><br />
+						</form>
+					</div>
+					<div class="form_rule">
+						<label>Description:</label>
+						<textarea class="form-control" id="description" name="description"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button id="updateCourse" type="button" class="btn btn-info"
+							data-dismiss="modal">Update</button>
+						<button id="deleteCourse" type="button" class="btn btn-danger"
+							data-dismiss="modal">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal new course -->
+	<div class="modal fade" id="newCourseModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">ENTER DETAILS TO NEW COURSE</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="d-flex justify-content-center form_container_modal">
+						<form class="form_rule">
+							<label>Type:</label> <select class="form-control"
+								name="selectCourseType" id=newCourseType>
+								<option value="Exercise">Exercise</option>
+								<option value="History">History</option>
+								<option value="Health">Health</option>
+								<option value="Programming">Programming</option>
+							</select> <br> <label>Subject:</label><span id="newCourseSubjectError" style="color: red;">*</span> <input class="form-control"
+								type="text" id="newCourseSubject" name="subject" /><br /> <label>Level:</label>
+							<input class="form-control" type="text" id="newCourseLevel"
+								name="level" /> <br> <label>Instructor:</label> <input
+								class="form-control" type="text" id="newCourseInstructor"
+								name="instructor" /><br />
+						</form>
+						<form class="form_rule">
+							<label>Title:</label><span id="newCourseTitleError" style="color: red;">*</span> <input class="form-control" type="text"
+								id="newCourseTitle" name="title"><br /> <label>Duration
+								in hours:</label> <input class="form-control" type="number" min="0"
+								step="1" id="newCourseDuration" name="duration" /><br /> <label>Price:</label>
+							<input class="form-control" type="decimal" id="newCoursePrice"
+								name="price" /><br /> <label>Description:</label>
+							<textarea class="form-control" id="newCourseDescription"
+								name="description"></textarea>
+							<br>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="saveCourse" type="button" class="btn btn-info"
+						data-dismiss="modal">Save</button>
+					<button id="cancelCourse" type="button" class="btn btn-danger"
+						data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal user details -->
+	<div class="modal fade" id="userDetaislModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">USER DETAILS</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="d-flex justify-content-center form_container_modal">
+					<form>
+						<img id="userPic" src="" class="login_logo" />
+						<p></p>
+						<label>Username: </label> <input class="form-control" type="text"
+							id="userID" name="userID" disabled /> <br /> <label>Name:</label>
+						<input class="form-control" type="text" id="userName"
+							name="userName" /><br />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="updateUser" type="button" class="btn btn-info"
+						data-dismiss="modal">Update</button>
+					<button id="deleteUser" type="button" class="btn btn-danger"
+						data-dismiss="modal">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal new user -->
+	<div class="modal fade" id="newUserModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">ENTER DETAILS TO NEW USER</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="d-flex justify-content-center form_container_modal">
+						<form>
+							<label>Name:</label> <span id="newUserNameError" style="color: red;">*</span><input class="form-control" type="text"
+								id="newUserName" name="newUserName" required/> <br /> 
+							<label>Username:</label> <span id="newUserIDError" style="color: red;">*</span> <input class="form-control" type="text" id="newUserID"
+								name="newUserID" required="required" /> <br /> 
+							<label>Password:</label> <span id="newUserPasswordError" style="color: red;">*</span> <input	class="form-control" type="password" id="newUserPassword"
+								name="newUserPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/> <br>
+						</form>
+					</div>
+					<div id="validationMessage" class="text-left text-secondary">
+  						<h5>Password must contain the following:</h5>
+					 	 <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+					  	<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+					 	 <p id="number" class="invalid">A <b>number</b></p>
+					  	<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+					</div>
+					<div class="modal-footer">
+						<button id="saveUser" type="button" class="btn btn-info"
+							data-dismiss="modal">Save</button>
+						<button id="cancelUser" type="button" class="btn btn-danger"
+							data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal about -->
+	<div class="modal fade" id="aboutModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">PROJECT 2019</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>
+						<b>COURSE:</b> Masters of Science in Applied Software Engineering
+					</p>
+					<p>
+						<b>SUBJECT:</b> Web Technologies
+					</p>
+					<p>
+						<b>LECTURER:</b> Mary Giblin
+					</p>
+					<p>
+						<b>STUDENT:</b> Andreia Trigueiro [A00258363]
+					</p>
+					<p>
+						<b>PROJECT GOAL:</b> Develop a Web Application using SPA
+						architecture that achieves the following points:
+					</p>
+					<ul style="list-style-type: none;">
+						<li>✔ Use RESTful web services</li>
+						<li>✔ Have CRUD actions for a chosen product (courses)</li>
+						<li>✔ Have CRUD actions for users/admins</li>
+						<li>✔ Have Login/Logout</li>
+						<li>✔ Use Cards</li>
+						<li>✔ Use Modal/Dialog boxes</li>
+						<li>✔ Use DataTables</li>
+						<li>✔ Fully Responsive</li>
+						<li>✔ Application Manual Tested</li>
+						<li>✔ Application Automated Tested (Arquillian)</li>
+						<li>✔ Store in the database all information about users/admin
+							and products</li>
+					</ul>
+					<p>
+						<b>PROJECT ARCHITECTURE:</b> <img
+							src="resources/images/projectArchitecture.png" height="200"
+							width="450" />
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
